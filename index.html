@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slim Edge — Handcrafted Chainmaille & Scalemaille Jewelry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111111;
+    --charcoal: #1a1a1a;
+    --mid: #2a2a2a;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --silver: #b8b8c8;
+    --white: #f5f3ef;
+    --cream: #ede8df;
+    --text-muted: #888880;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  nav .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav ul a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav ul a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--black));
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    width: min(680px, 90vw);
+    animation: fadeIn 1.2s ease forwards;
+    position: relative;
+    z-index: 1;
+    border-radius: 8px;
+    box-shadow: 0 0 60px rgba(201,168,76,0.15);
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    margin-top: 2rem;
+    animation: fadeIn 1.8s ease forwards;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 900px;
+    line-height: 1.5;
+  }
+
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    animation: fadeIn 2.2s ease forwards;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 2.5s ease forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.4rem;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid var(--gold);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--gold);
+  }
+
+  .btn-outline {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.4rem;
+    background: transparent;
+    color: var(--silver);
+    text-decoration: none;
+    border: 1px solid rgba(184,184,200,0.35);
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    padding: 6rem 2rem;
+    background: var(--deep);
+    position: relative;
+  }
+
+  .about-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-inner .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .about-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--cream);
+    margin-bottom: 1.8rem;
+  }
+
+  .about-inner p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--silver);
+    max-width: 680px;
+    margin: 0 auto 1.2rem;
+  }
+
+  .about-logo-white {
+    width: min(680px, 90vw);
+    margin: 3rem auto 0;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(201,168,76,0.1);
+  }
+
+  /* ── MATERIALS BANNER ── */
+  .materials-banner {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,168,76,0.18);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 5rem);
+    flex-wrap: wrap;
+  }
+
+  .material-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .material-item .label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .material-item .note {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── GALLERY ── */
+  #gallery {
+    padding: 6rem 2rem;
+    background: var(--black);
+  }
+
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .filter-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    transition: transform 0.35s, border-color 0.35s;
+    cursor: pointer;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,168,76,0.35);
+  }
+
+  .product-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--mid);
+  }
+
+  .product-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  .product-card:hover .product-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .product-img-nav {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.3rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .product-card:hover .product-img-nav { opacity: 1; }
+
+  .img-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .img-dot.active { background: var(--gold); }
+
+  .product-info {
+    padding: 1.2rem 1.4rem 1.4rem;
+  }
+
+  .product-category {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .product-weave {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product-price {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+  }
+
+  .product-inquire {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,184,200,0.3);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .product-inquire:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  /* ── FLAG MAGNETS SECTION ── */
+  #flag-magnets {
+    padding: 5rem 2rem;
+    background: var(--deep);
+  }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .flag-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .flag-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201,168,76,0.3);
+  }
+
+  .flag-card img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .flag-card-label {
+    padding: 0.7rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    text-align: center;
+  }
+
+  .flag-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── CUSTOM ORDERS ── */
+  #custom {
+    padding: 6rem 2rem;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #custom::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,168,76,0.05), transparent 70%);
+    pointer-events: none;
+  }
+
+  .custom-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .custom-inner p {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--silver);
+    margin-bottom: 1.2rem;
+  }
+
+  .custom-note {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.4rem 2rem;
+    margin: 2rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--silver);
+    line-height: 1.7;
+  }
+
+  .material-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .mat-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+
+  .mat-card .mat-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .mat-card .mat-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── COMING SOON ── */
+  #coming-soon {
+    padding: 5rem 2rem;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .coming-soon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .coming-card {
+    background: var(--mid);
+    border: 1px dashed rgba(201,168,76,0.2);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .coming-card .coming-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .coming-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .coming-card p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 6rem 2rem;
+    background: var(--deep);
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-inner p {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--silver);
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .contact-link-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .contact-link-item:hover { color: var(--gold); }
+
+  .contact-link-item .icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: var(--gold);
+    transition: background 0.25s;
+  }
+
+  .contact-link-item:hover .icon {
+    background: rgba(201,168,76,0.12);
+  }
+
+  .location-note {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.25);
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .modal-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-category {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .modal-weave {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .modal-price {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .modal-desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--silver);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.6);
+    border: none;
+    color: var(--white);
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(201,168,76,0.3); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .payment-section {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 2rem 4rem;
+  }
+
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 500px;
+    margin: 2.5rem auto 0;
+  }
+
+  .qr-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .qr-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .qr-img {
+    width: 100%;
+    max-width: 180px;
+    display: block;
+    border: 3px solid rgba(255,255,255,0.08);
+  }
+
+  .qr-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0.9rem 1.2rem; }
+    nav ul { gap: 1.2rem; }
+    nav ul a { font-size: 0.68rem; }
+    .material-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .qr-grid { grid-template-columns: 1fr; max-width: 260px; }
+  }
+
+  @media (max-width: 480px) {
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Slim Edge</a>
+  <ul>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#flag-magnets">Flag Magnets</a></li>
+    <li><a href="#custom">Custom Orders</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <img src="New Slim Edge Logo.png" alt="Slim Edge — Handcrafted Chainmaille & Scalemaille Jewelry" class="hero-logo">
+  <p class="hero-tagline">Once more unto the forge, dear friends — where an artist's hands do turn cold rings to legendary jewels and adornments.</p>
+  <p class="hero-sub">Northern Illinois · Each Piece Personally Made by Rachel Sampson</p>
+  <div class="hero-cta">
+    <a href="#gallery" class="btn-primary">View Collection</a>
+    <a href="#custom" class="btn-outline">Custom Orders</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner fade-in">
+    <p class="eyebrow">The Artist</p>
+    <h2>Meticulously handcrafted,<br>one ring at a time</h2>
+    <p>I'm Rachel Sampson. I have been hand-crafting chainmaille and scalemaille jewelry and accessories for 25 years. Each item is lovingly and meticulously handcrafted personally by me.</p>
+    <p>I take tremendous pride in providing high-quality, beautiful necklaces, earrings, bracelets, wallet chains, and more. I've also crafted chainmaille dragons and wearable dragon tails — because the art of the ring knows no limits.</p>
+    <div class="gold-divider" style="margin: 2rem auto;"></div>
+    <img src="New Slim Edge Logo.png" alt="Slim Edge" class="about-logo-white">
+  </div>
+</section>
+
+<!-- MATERIALS BANNER -->
+<div class="materials-banner">
+  <div class="material-item">
+    <span class="label">Aluminum</span>
+    <span class="note">Lightweight · Vibrant Colors · Most Affordable</span>
+  </div>
+  <div class="material-item">
+    <span class="label">Stainless Steel</span>
+    <span class="note">Durable · Classic Look · Mid Range</span>
+  </div>
+  <div class="material-item">
+    <span class="label">Titanium</span>
+    <span class="note">Premium · Hypoallergenic · Contact for Availability</span>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="fade-in">
+    <p class="section-title">The Collection</p>
+    <p class="section-subtitle">All pieces shown in aluminum · Available in multiple materials</p>
+  </div>
+
+  <div class="filter-bar fade-in">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('bracelet', this)">Bracelets</button>
+    <button class="filter-btn" onclick="filterProducts('necklace', this)">Necklaces</button>
+    <button class="filter-btn" onclick="filterProducts('pendant', this)">Pendants</button>
+    <button class="filter-btn" onclick="filterProducts('earring', this)">Earrings</button>
+    <button class="filter-btn" onclick="filterProducts('other', this)">Other</button>
+  </div>
+
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- FLAG MAGNETS -->
+<section id="flag-magnets">
+  <div class="fade-in">
+    <p class="section-title">Flag Magnets</p>
+    <p class="section-subtitle">Chainmaille woven in the colors of nations — wearable or display</p>
+  </div>
+  <div class="flags-grid fade-in" id="flags-grid"></div>
+  <p class="flag-note">Don't see your flag? Custom flag magnets available — contact us!</p>
+</section>
+
+<!-- CUSTOM ORDERS -->
+<section id="custom">
+  <div class="custom-inner fade-in">
+    <p class="section-title">Custom Orders</p>
+    <p class="section-subtitle">Your vision, my craft</p>
+    <p>Custom orders are warmly welcomed and strongly encouraged. Whether you have a specific weave, color, or material in mind — or you'd like something entirely unique — Rachel will work with you personally to bring your vision to life.</p>
+
+    <div class="custom-note">
+      "Color availability may vary. Some shades may require a brief back-and-forth conversation to confirm stock — but we'll always find a beautiful solution together."
+    </div>
+
+    <div class="material-grid">
+      <div class="mat-card">
+        <p class="mat-name">Aluminum</p>
+        <p class="mat-desc">Lightweight, wide color range. Most affordable option. Readily available.</p>
+      </div>
+      <div class="mat-card">
+        <p class="mat-name">Stainless Steel</p>
+        <p class="mat-desc">Strong, classic silver finish. Great for everyday wear. Readily available.</p>
+      </div>
+      <div class="mat-card">
+        <p class="mat-name">Titanium</p>
+        <p class="mat-desc">Premium hypoallergenic option. Subject to supplier availability — please inquire.</p>
+      </div>
+    </div>
+
+    <p>Seasonal and holiday custom pieces are also available year-round — perfect for gifts!</p>
+    <br>
+    <a href="mailto:riesiel@gmail.com" class="btn-primary">Start a Custom Order</a>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section id="coming-soon">
+  <div class="fade-in">
+    <p class="section-title">Coming Soon</p>
+    <p class="section-subtitle">Expanding the collection</p>
+  </div>
+  <div class="coming-soon-grid fade-in">
+    <div class="coming-card">
+      <span class="coming-icon">⚗️</span>
+      <h3>Scalemaille Jewelry</h3>
+      <p>Dragon scale-inspired pieces in vivid colors. Photos and listings coming soon.</p>
+    </div>
+    <div class="coming-card">
+      <span class="coming-icon">🖨️</span>
+      <h3>3D Printed Products</h3>
+      <p>Unique printed designs, some combined with chainmaille. Coming soon.</p>
+    </div>
+    <div class="coming-card">
+      <span class="coming-icon">🐉</span>
+      <h3>Dragon Creations</h3>
+      <p>Chainmaille dragons and wearable dragon tails — ask about availability!</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <p class="section-title">Get in Touch</p>
+    <p class="section-subtitle">Questions, custom orders, or just to say hello</p>
+    <p>Rachel personally responds to every inquiry. Whether you're looking for something specific or just want to explore what's possible, don't hesitate to reach out.</p>
+
+    <div class="contact-links">
+      <a href="mailto:riesiel@gmail.com" class="contact-link-item">
+        <span class="icon">✉</span>
+        riesiel@gmail.com
+      </a>
+      <a href="https://www.instagram.com/slimedge10" target="_blank" class="contact-link-item">
+        <span class="icon">📷</span>
+        Instagram — @slimedge10
+      </a>
+      <a href="https://www.facebook.com/share/18MBqG8UbR/?mibextid=wwXIfr" target="_blank" class="contact-link-item">
+        <span class="icon">f</span>
+        Facebook — Slim Edge
+      </a>
+      <a href="https://pin.it/5roN13Tc1" target="_blank" class="contact-link-item">
+        <span class="icon">📌</span>
+        Pinterest — Slim Edge
+      </a>
+      <a href="https://linktr.ee/slim.edge" target="_blank" class="contact-link-item">
+        <span class="icon">🌿</span>
+        Linktree — All Links
+      </a>
+    </div>
+
+    <p class="location-note">📍 Ships from Northern Illinois, USA &nbsp;·&nbsp; Worldwide shipping available</p>
+  </div>
+
+  <!-- PAYMENT SECTION -->
+  <div class="payment-section fade-in">
+    <div class="gold-divider" style="margin: 3rem auto;"></div>
+    <p class="section-title">Ready to Pay?</p>
+    <p class="section-subtitle">Contact Rachel first to confirm your order, then pay securely below</p>
+
+    <div class="qr-grid">
+      <div class="qr-card">
+        <p class="qr-label">PayPal</p>
+        <img src="PayPal_QR.jpg" alt="Scan to pay via PayPal" class="qr-img">
+        <p class="qr-sub">Scan with your camera app</p>
+      </div>
+      <div class="qr-card">
+        <p class="qr-label">Venmo</p>
+        <img src="Venmo_QR.jpg" alt="Scan to pay via Venmo" class="qr-img">
+        <p class="qr-sub">@Riesiel · Scan with your camera app</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Slim Edge · Handcrafted Chainmaille & Scalemaille Jewelry · Northern Illinois</p>
+  <p style="margin-top:0.4rem;">All pieces personally handcrafted by Rachel Sampson · <a href="mailto:riesiel@gmail.com">riesiel@gmail.com</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img src="" alt="" class="modal-img" id="modal-img">
+    <div class="modal-body">
+      <p class="modal-category" id="modal-category"></p>
+      <h2 class="modal-name" id="modal-name"></h2>
+      <p class="modal-weave" id="modal-weave"></p>
+      <p class="modal-price" id="modal-price"></p>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-actions">
+        <a href="mailto:riesiel@gmail.com" class="btn-primary" id="modal-email">Inquire About This Piece</a>
+        <a href="#" class="btn-outline">View on Etsy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PRODUCT DATA ──
+const products = [
+  // BRACELETS - Bee Stings
+  { id: 1, name: "Bee Stings Bracelet", color: "Blue & Silver", weave: "Bee Stings Weave", category: "bracelet", price: "$38", images: ["Bee Stings Blue and Silver 1.jpeg", "Bee Stings Blue and Silver 2.jpeg"], desc: "A dynamic interlocking weave with bold blue aluminum and silver rings creating a lively, textured bracelet." },
+  { id: 2, name: "Bee Stings Bracelet", color: "Pink", weave: "Bee Stings Weave", category: "bracelet", price: "$38", images: ["Bee Stings Pink 1.jpeg", "Bee Stings Pink 2.jpeg"], desc: "Vibrant pink aluminum rings in the striking Bee Stings pattern — bold, wearable art." },
+  { id: 3, name: "Bee Stings Bracelet", color: "Purple", weave: "Bee Stings Weave", category: "bracelet", price: "$38", images: ["Bee Stings Purple 1.jpeg", "Bee Stings Purple 2.jpeg"], desc: "Deep purple aluminum in the Bee Stings weave — elegant and eye-catching." },
+
+  // NECKLACES - Byzantine
+  { id: 4, name: "Byzantine Necklace", color: "Black & Silver", weave: "Byzantine Weave", category: "necklace", price: "$55", images: ["Byzantine Necklace Black and Silver 1.jpeg", "Byzantine Necklace Black and Silver 2.jpeg"], desc: "The classic Byzantine weave in bold black and silver aluminum — a timeless statement piece." },
+  { id: 5, name: "Byzantine Necklace", color: "Blue & Silver", weave: "Byzantine Weave", category: "necklace", price: "$55", images: ["Byzantine Birdcage Blue and Silver 1.jpeg"], desc: "Vivid blue and silver aluminum Byzantine weave necklace, shown with matching ring." },
+  { id: 6, name: "Byzantine Necklace", color: "Gold & Silver", weave: "Byzantine Weave", category: "necklace", price: "$55", images: ["Byzantine Birdcage Gold and Silver 1.jpeg", "Byzantine Birdcage Gold and Silver 2.jpeg"], desc: "Warm gold and silver aluminum in the Byzantine weave — classic and luxurious." },
+  { id: 7, name: "Byzantine Necklace", color: "Green & Silver", weave: "Byzantine Weave", category: "necklace", price: "$55", images: ["Byzantine Necklace Green and Silver 1.jpeg", "Byzantine Necklace Green and Silver 2.jpeg"], desc: "Forest green and silver aluminum Byzantine necklace — nature-inspired elegance." },
+  { id: 8, name: "Byzantine Necklace", color: "Red & Silver", weave: "Byzantine Weave", category: "necklace", price: "$55", images: ["Byzantine Necklace Red and Silver 1.jpeg"], desc: "Rich red and silver aluminum Byzantine necklace — striking and bold." },
+  { id: 9, name: "Byzantine Necklace with Snowman Pendant", color: "Red & Silver", weave: "Byzantine Weave", category: "necklace", price: "$65", images: ["Byzantine Necklace Red and Silver Snowman Pendant.jpeg"], desc: "Red and silver Byzantine necklace with a charming snowman pendant — a delightful year-round or holiday piece." },
+
+  // PENDANTS
+  { id: 10, name: "Acorn Pendant", color: "Champagne Pearl", weave: "Pendant Necklace", category: "pendant", price: "$32", images: ["Acorn Pendant Champaigne Pearl.jpeg"], desc: "A delicate champagne pearl nestled in a silver acorn cap pendant on a silver chain." },
+  { id: 11, name: "Acorn Pendant", color: "Glass Pearl", weave: "Pendant Necklace", category: "pendant", price: "$30", images: ["Acorn Pendant Glass Pearl.jpeg"], desc: "Silvery glass pearl set in a beautiful acorn cap pendant. Elegant simplicity." },
+  { id: 12, name: "Acorn Pendant", color: "Onyx Bead", weave: "Pendant Necklace", category: "pendant", price: "$34", images: ["Acorn Pendant Onyx Bead.jpeg"], desc: "Deep black onyx bead in a warm bronze acorn cap — dramatic and earthy." },
+  { id: 13, name: "Carriage Pod Pendant", color: "Agate Bead", weave: "Carriage Pod Setting", category: "pendant", price: "$48", images: ["Carriage Pod Agate Bead.jpeg"], desc: "A stunning agate bead caged in an intricate chainmaille carriage pod setting on silver chain." },
+  { id: 14, name: "Moorish Rose Pendant", color: "Blue & Silver", weave: "Moorish Rose Weave", category: "pendant", price: "$52", images: ["Moorish Rose Blue and Silver.jpeg"], desc: "A breathtaking Moorish Rose chainmaille pendant with a blue aluminum center — like a blooming metal flower." },
+  { id: 15, name: "Prima Pendant", color: "Blue Crystal", weave: "Prima Setting", category: "pendant", price: "$58", images: ["Prima Pendant Blue Crystal.jpeg", "Prima Pendant Blue Crystal (2).jpeg"], desc: "A brilliant faceted blue crystal held in an intricate Prima chainmaille setting. Dazzling from every angle." },
+  { id: 16, name: "Prima Pendant", color: "Mermaid", weave: "Prima Setting", category: "pendant", price: "$60", images: ["Prima Pendant Mermaid.jpeg"], desc: "An iridescent mermaid scale cabochon cradled in a Prima chainmaille setting — magical and one-of-a-kind." },
+  { id: 17, name: "Prima Pendant", color: "Mystic Green Crystal", weave: "Prima Setting", category: "pendant", price: "$60", images: ["Prima Pendant Mystic Green crystal.jpeg"], desc: "A mesmerizing green-to-purple shifting crystal in an elegant Prima setting. Truly mystical." },
+  { id: 18, name: "Prima Pendant", color: "Rainbow Druzy", weave: "Prima Setting", category: "pendant", price: "$62", images: ["Prima Pendant Rainbow Druzy.jpeg"], desc: "A glittering rainbow druzy stone set in a Prima chainmaille frame — nature's sparkle, framed in metal art." },
+
+  // EARRINGS
+  { id: 19, name: "Fall Leaves Earrings", color: "Autumn", weave: "Handcrafted Floral", category: "earring", price: "$28", images: ["Fall Leaves Earrings.jpeg"], desc: "Handcrafted autumn leaf earrings in warm reds, oranges, and yellows on silver chainmaille findings." },
+  { id: 20, name: "Lavender Earrings", color: "Blue-Purple", weave: "Handcrafted Floral", category: "earring", price: "$28", images: ["Lavender Earrings 1.jpeg", "Lavender Earrings 2.jpeg"], desc: "Delicate handcrafted wisteria-style earrings with cascading blue-purple petals and green bead stems." },
+  { id: 21, name: "Tulip Earrings", color: "Red & Green", weave: "Handcrafted Floral", category: "earring", price: "$26", images: ["Tulip Earrings 1.jpeg", "Tulip Earrings 2.jpeg"], desc: "Charming handcrafted tulip earrings with rosy blooms and green leaves on silver chainmaille findings." },
+
+  // OTHER
+  { id: 22, name: "Fidget Bracelet", color: "Black, Gold & Silver", weave: "Fidget Weave", category: "other", price: "$42", images: ["Fidget Bracelet Black Gold and Silver.jpeg", "Fidget Bracelet Black Gold and Silver 2.jpeg"], desc: "A tactile bracelet designed for fidgeting — the satisfying movement of rings makes this as functional as it is beautiful." },
+
+  // ORBITAL SUPER BERUS - BRACELETS
+  { id: 23, name: "Orbital Super Berus Bracelet", color: "Black & Copper", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Black and Copper 1.jpeg", "Orbital Super Berus Black and Copper 2.jpeg"], desc: "Rich copper and black in the intricate Orbital Super Berus weave — dark, warm, and striking." },
+  { id: 24, name: "Orbital Super Berus Bracelet", color: "Black & Silver", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Black and Silver 1.jpeg", "Orbital Super Berus Black and Silver 2.jpeg"], desc: "Classic black and silver in the detailed Orbital Super Berus pattern — sleek and sophisticated." },
+  { id: 25, name: "Orbital Super Berus Bracelet", color: "Blue & Silver", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Blue and Silver 1.jpeg", "Orbital Super Berus Blue and Silver 2.jpeg"], desc: "Bright blue and silver aluminum in the complex Orbital Super Berus weave — vibrant and eye-catching." },
+  { id: 26, name: "Orbital Super Berus Bracelet", color: "Pink & Silver", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Pink and Silver 1.jpeg", "Orbital Super Berus Pink and Silver 2.jpeg"], desc: "Sweet pink and silver in the Orbital Super Berus weave — feminine and finely crafted." },
+  { id: 27, name: "Orbital Super Berus Bracelet", color: "Purple & Silver", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Silver and Purple 1.jpeg", "Orbital Super Berus Silver and Purple 2.jpeg"], desc: "Vivid purple and silver in the detailed Orbital Super Berus weave." },
+  { id: 28, name: "Orbital Super Berus Bracelet", color: "Red & Silver", weave: "Orbital Super Berus Weave", category: "bracelet", price: "$45", images: ["Orbital Super Berus Red and Silver 1.jpeg", "Orbital Super Berus Red and Silver 2.jpeg"], desc: "Bold red and silver in the intricate Orbital Super Berus pattern — passionate and detailed." },
+];
+
+// FLAG DATA
+const flags = [
+  { name: "Canada", img: "Canada Flag Magnet.jpeg" },
+  { name: "Denmark", img: "Denmark Flag Magnet.jpeg" },
+  { name: "France", img: "France Flag Magnet.jpeg" },
+  { name: "Greece", img: "Greece Flag Magnet.jpeg" },
+  { name: "Honduras", img: "Hondurus Flag Magnet.jpeg" },
+  { name: "India", img: "India Flag Magnet.jpeg" },
+  { name: "Ireland", img: "Ireland Flag Magnet.jpeg" },
+  { name: "Mauritius", img: "Maritius Flag Magnet.jpeg" },
+  { name: "Philippines", img: "Philippeanes Flag Magnet.jpeg" },
+  { name: "Scotland", img: "Scotland Flag Magnet.jpeg" },
+  { name: "South Africa", img: "South Africa Flag Magnet.jpeg" },
+];
+
+// ── RENDER PRODUCTS ──
+function renderProducts(filter) {
+  const grid = document.getElementById('products-grid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card" onclick="openModal(${p.id})">
+      <div class="product-img-wrap">
+        <img src="${p.images[0]}" alt="${p.name} ${p.color}" id="card-img-${p.id}" loading="lazy">
+        ${p.images.length > 1 ? `
+        <div class="product-img-nav" onclick="event.stopPropagation()">
+          ${p.images.map((_, i) => `<button class="img-dot ${i===0?'active':''}" onclick="switchImg(${p.id}, ${i}, this)"></button>`).join('')}
+        </div>` : ''}
+      </div>
+      <div class="product-info">
+        <p class="product-category">${p.category}</p>
+        <h3 class="product-name">${p.name} — ${p.color}</h3>
+        <p class="product-weave">${p.weave}</p>
+        <div class="product-footer">
+          <span class="product-price">${p.price}</span>
+          <a href="mailto:riesiel@gmail.com?subject=Inquiry: ${encodeURIComponent(p.name+' '+p.color)}" class="product-inquire" onclick="event.stopPropagation()">Inquire</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function switchImg(id, idx, dotEl) {
+  const p = products.find(x => x.id === id);
+  document.getElementById(`card-img-${id}`).src = p.images[idx];
+  dotEl.closest('.product-img-nav').querySelectorAll('.img-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+}
+
+function filterProducts(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(filter);
+}
+
+// ── RENDER FLAGS ──
+function renderFlags() {
+  document.getElementById('flags-grid').innerHTML = flags.map(f => `
+    <div class="flag-card">
+      <img src="${f.img}" alt="${f.name} Flag Magnet" loading="lazy">
+      <p class="flag-card-label">${f.name}</p>
+    </div>
+  `).join('');
+}
+
+// ── MODAL ──
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  document.getElementById('modal-img').src = p.images[0];
+  document.getElementById('modal-img').alt = `${p.name} ${p.color}`;
+  document.getElementById('modal-category').textContent = p.category.toUpperCase();
+  document.getElementById('modal-name').textContent = `${p.name} — ${p.color}`;
+  document.getElementById('modal-weave').textContent = p.weave;
+  document.getElementById('modal-price').textContent = `Starting at ${p.price} (aluminum)`;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-email').href = `mailto:riesiel@gmail.com?subject=Inquiry: ${encodeURIComponent(p.name+' '+p.color)}`;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnOverlay(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ── INIT ──
+renderProducts('all');
+renderFlags();
+</script>
+</body>
+</html>
